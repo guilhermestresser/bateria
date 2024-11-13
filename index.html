@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Cadastro</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input[type="text"], input[type="email"], input[type="password"], input[type="number"], input[type="date"], textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        textarea {
+            height: 100px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Formulário de Cadastro</h2>
+        <form id="cadastro-form">
+            <label for="nome">Nome Completo:</label>
+            <input type="text" id="nome" name="nome" required placeholder="Digite seu nome completo">
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required placeholder="Digite seu email">
+
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" name="senha" required placeholder="Digite sua senha">
+
+            <label for="confirmar-senha">Confirmar Senha:</label>
+            <input type="password" id="confirmar-senha" name="confirmar-senha" required placeholder="Confirme sua senha">
+
+            <label for="telefone">Telefone:</label>
+            <input type="text" id="telefone" name="telefone" required placeholder="Digite seu telefone">
+
+            <label for="endereco">Endereço:</label>
+            <input type="text" id="endereco" name="endereco" required placeholder="Digite seu endereço">
+
+            <label for="data-nascimento">Data de Nascimento:</label>
+            <input type="date" id="data-nascimento" name="data-nascimento" required>
+
+            <label for="sexo">Sexo:</label>
+            <select id="sexo" name="sexo" required>
+                <option value="">Selecione o sexo</option>
+                <option value="masculino">Masculino</option>
+                <option value="feminino">Feminino</option>
+                <option value="outro">Outro</option>
+            </select>
+
+            <label for="profissao">Profissão:</label>
+            <input type="text" id="profissao" name="profissao" required placeholder="Digite sua profissão">
+
+            <label for="comentarios">Comentários:</label>
+            <textarea id="comentarios" name="comentarios" placeholder="Digite seus comentários"></textarea>
+
+            <input type="submit" value="Enviar">
+        </form>
+    </div>
+
+    <script>
+        // Captura o formulário
+        document.getElementById('cadastro-form').addEventListener('submit', function(event) {
+            event.preventDefault();  // Impede o envio padrão do formulário
+
+            // Captura os dados dos campos
+            const nome = document.getElementById('nome').value;
+            const email = document.getElementById('email').value;
+            const senha = document.getElementById('senha').value;
+            const confirmarSenha = document.getElementById('confirmar-senha').value;
+            const telefone = document.getElementById('telefone').value;
+            const endereco = document.getElementById('endereco').value;
+            const dataNascimento = document.getElementById('data-nascimento').value;
+            const sexo = document.getElementById('sexo').value;
+            const profissao = document.getElementById('profissao').value;
+            const comentarios = document.getElementById('comentarios').value;
+
+            // Verifica se as senhas são iguais
+            if (senha !== confirmarSenha) {
+                alert("As senhas não coincidem!");
+                return;
+            }
+
+            // Exibe os dados em uma nova página
+            const resultadoHtml = `
+                <h2>Dados Enviados</h2>
+                <p><strong>Nome:</strong> ${nome}</p>
+                <p><strong>Email:</strong> ${email}</p>
+                <p><strong>Telefone:</strong> ${telefone}</p>
+                <p><strong>Endereço:</strong> ${endereco}</p>
+                <p><strong>Data de Nascimento:</strong> ${dataNascimento}</p>
+                <p><strong>Sexo:</strong> ${sexo}</p>
+                <p><strong>Profissão:</strong> ${profissao}</p>
+                <p><strong>Comentários:</strong> ${comentarios}</p>
+            `;
+            // Abre uma nova janela com os dados
+            const newWindow = window.open();
+            newWindow.document.write(resultadoHtml);
+            newWindow.document.close();
+        });
+    </script>
+</body>
+</html>
